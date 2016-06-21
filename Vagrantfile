@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 5432, host: 5432 # Postgresql
   config.vm.network :forwarded_port, guest: 3001, host: 3001 # Gulp server
   config.vm.network :forwarded_port, guest: 9000, host: 9000 # Gulp server
+  config.vm.network :forwarded_port, guest: 9200, host: 9200 # Elasticsearch
 
   config.vm.network :private_network, ip: VAGRANT_IP
   config.vm.hostname = VAGRANT_HOSTNAME
@@ -32,10 +33,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: 'provisions/env.sh', privileged: false
 
   subdomains = [nil]
-  subdomains += %w(www admin test demo tasty jelleryru jewelart
-  dresshood nomoreshop no_more_shop thumball
-  shop assets saharok wannabe sputnik cc varvara-shop
-  12storeez sex-shop freak-out-shop app api thumbor)
+  subdomains += %w(www admin demo thumball
+  shop assets saharok wannabe app api thumbor)
   #subdomains << '*' if RUBY_PLATFORM =~ /darwin/
   config.hostsupdater.aliases = subdomains.map { |s| [s, VAGRANT_APP_DOMAIN].compact * '.' }
 
