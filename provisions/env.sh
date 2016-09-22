@@ -21,7 +21,22 @@ if [ ! -d ~/.nvm/ ]; then
   source ~/.nvm/nvm.sh
 
   nvm install 5.0
+  nvm install 6.3
   npm install -g bower
+fi
+
+if ! grep -q -F 'load-nvmrc' ~/.zshrc; then
+    echo "autoload -U add-zsh-hook" >> ~/.zshrc
+    echo "load-nvmrc() {" >> ~/.zshrc
+    echo "  if [[ -f .nvmrc && -r .nvmrc ]]; then" >> ~/.zshrc
+    echo "    nvm use" >> ~/.zshrc
+    echo "  elif [[ $(nvm version) != $(nvm version default)  ]]; then" >> ~/.zshrc
+    echo "    echo \"Reverting to nvm default version\"" >> ~/.zshrc
+    echo "    nvm use default" >> ~/.zshrc
+    echo "  fi" >> ~/.zshrc
+    echo "}" >> ~/.zshrc
+    echo "add-zsh-hook chpwd load-nvmrc" >> ~/.zshrc
+    echo "load-nvmrc
 fi
 
 # Rbenv

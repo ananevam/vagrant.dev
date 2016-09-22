@@ -10,11 +10,13 @@ Vagrant.configure(2) do |config|
 
   config.ssh.forward_agent = true
   config.vm.network :forwarded_port, guest: 3000, host: 3000 # Rails
+  config.vm.network :forwarded_port, guest: 3808, host: 3808 # webpack
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # Mysql
   config.vm.network :forwarded_port, guest: 5432, host: 5432 # Postgresql
   config.vm.network :forwarded_port, guest: 3001, host: 3001 # Gulp server
   config.vm.network :forwarded_port, guest: 9000, host: 9000 # Gulp server
   config.vm.network :forwarded_port, guest: 9200, host: 9200 # Elasticsearch
+
 
   config.vm.network :private_network, ip: VAGRANT_IP
   config.vm.hostname = VAGRANT_HOSTNAME
