@@ -15,6 +15,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 5432, host: 5432 # Postgresql
   config.vm.network :forwarded_port, guest: 3001, host: 3001 # Gulp server
   config.vm.network :forwarded_port, guest: 9000, host: 9000 # Gulp server
+  config.vm.network :forwarded_port, guest: 8888, host: 8888 # thumbor
   config.vm.network :forwarded_port, guest: 9200, host: 9200 # Elasticsearch
 
 
@@ -22,6 +23,7 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = VAGRANT_HOSTNAME
 
   config.vm.synced_folder './code', '/home/vagrant/code', type: 'nfs_guest'
+  config.vm.synced_folder './nfs', '/home/vagrant/nfs', type: 'nfs'
 
   config.vm.provider :virtualbox do |vm|
     vm.customize ["modifyvm", :id, "--name", 'vagrant_dev']
