@@ -22,8 +22,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :private_network, ip: VAGRANT_IP
   config.vm.hostname = VAGRANT_HOSTNAME
 
-  config.vm.synced_folder './code', '/home/vagrant/code', type: 'nfs_guest'
-  config.vm.synced_folder './nfs', '/home/vagrant/nfs', type: 'nfs'
+  # config.vm.synced_folder './code', '/home/vagrant/code', type: 'nfs_guest'
+  config.vm.synced_folder '../vagrant.projects', '/home/vagrant/code', type: 'nfs'
 
   config.vm.provider :virtualbox do |vm|
     vm.customize ["modifyvm", :id, "--name", 'vagrant_dev']
