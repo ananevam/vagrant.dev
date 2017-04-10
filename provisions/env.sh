@@ -36,7 +36,7 @@ if ! grep -q -F 'load-nvmrc' ~/.zshrc; then
     echo "  fi" >> ~/.zshrc
     echo "}" >> ~/.zshrc
     echo "add-zsh-hook chpwd load-nvmrc" >> ~/.zshrc
-    echo "load-nvmrc
+    echo "load-nvmrc" >> ~/.zshrc
 fi
 
 # Rbenv
