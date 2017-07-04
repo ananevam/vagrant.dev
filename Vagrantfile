@@ -8,7 +8,6 @@ VAGRANT_IP = '192.168.10.201'
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
-  config.ssh.forward_agent = true
   config.vm.network :forwarded_port, guest: 3000, host: 3000 # Rails
   config.vm.network :forwarded_port, guest: 3808, host: 3808 # webpack
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # Mysql
@@ -22,8 +21,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :private_network, ip: VAGRANT_IP
   config.vm.hostname = VAGRANT_HOSTNAME
 
-  # config.vm.synced_folder './code', '/home/vagrant/code', type: 'nfs_guest'
-  config.vm.synced_folder '../vagrant.projects', '/home/vagrant/code', type: 'nfs'
+  config.vm.synced_folder './code', '/home/vagrant/code', type: 'nfs_guest'
 
   config.vm.provider :virtualbox do |vm|
     vm.customize ["modifyvm", :id, "--name", 'vagrant_dev']
@@ -36,12 +34,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: 'provisions/db.sh'
   config.vm.provision "shell", path: 'provisions/env.sh', privileged: false
 
-  subdomains = [nil]
-  subdomains += %w(www admin demo thumball
-  shop assets saharok wannabe app api thumbor)
-  #subdomains << '*' if RUBY_PLATFORM =~ /darwin/
-  config.hostsupdater.aliases = subdomains.map { |s| [s, VAGRANT_APP_DOMAIN].compact * '.' }
-
-  config.ssh.forward_agent = true
-  config.ssh.pty = false
+  # config.ssh.forward_agent = true
+  # config.ssh.pty = false
 end
