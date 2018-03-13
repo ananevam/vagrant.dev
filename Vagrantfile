@@ -8,6 +8,8 @@ VAGRANT_IP = '192.168.10.201'
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
+  config.ssh.forward_agent = true
+
   config.vm.network :forwarded_port, guest: 3000, host: 3000 # Rails
   config.vm.network :forwarded_port, guest: 3808, host: 3808 # webpack
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # Mysql
