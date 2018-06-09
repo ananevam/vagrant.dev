@@ -19,6 +19,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 8888, host: 8888 # thumbor
   config.vm.network :forwarded_port, guest: 9200, host: 9200 # Elasticsearch
   config.vm.network :forwarded_port, guest: 8050, host: 8050
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
 
 
   config.vm.network :private_network, ip: VAGRANT_IP
@@ -28,7 +29,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :virtualbox do |vm|
     vm.customize ["modifyvm", :id, "--name", 'vagrant_dev']
-    vm.customize ["modifyvm", :id, "--memory", ENV['VM_MEM'] ? ENV['VM_MEM'].to_i : 4096]
+    vm.customize ["modifyvm", :id, "--memory", ENV['VM_MEM'] ? ENV['VM_MEM'].to_i : 6144]
     vm.customize ["modifyvm", :id, "--cpus", 2]
   end
 
