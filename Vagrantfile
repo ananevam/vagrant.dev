@@ -3,10 +3,16 @@
 
 VAGRANT_APP_DOMAIN = "vagrant.dev"
 VAGRANT_HOSTNAME = "vagrant"
-VAGRANT_IP = '192.168.10.201'
+VAGRANT_IP = '192.168.10.202'
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  # config.vm.provider :virtualbox do |vb|
+  #   vb.gui = true
+  # end
+
+  config.vm.box = "ubuntu/xenial64"
+
+  config.disksize.size = '50GB'
 
   config.ssh.forward_agent = true
 
@@ -38,6 +44,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: 'provisions/db.sh'
   config.vm.provision "shell", path: 'provisions/env.sh', privileged: false
 
-  # config.ssh.forward_agent = true
   # config.ssh.pty = false
 end

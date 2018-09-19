@@ -10,7 +10,7 @@ fi
 
 # Меняем тему по умолчанию что бы не путаться где находишься
 sed -i -E 's/(^ZSH_THEME.+$)/ZSH_THEME="gentoo"/g' ~/.zshrc
-sed -i -E 's/(^plugins=.+$)/plugins=(git bundler)/g' ~/.zshrc
+#sed -i -E 's/(^plugins=.+$)/plugins=(git bundler)/g' ~/.zshrc
 
 # Nvm
 if [ ! -d ~/.nvm/ ]; then
@@ -20,9 +20,9 @@ if [ ! -d ~/.nvm/ ]; then
 
   source ~/.nvm/nvm.sh
 
-  nvm install 5.0
+  # nvm install 5.0
   nvm install 6.3
-  npm install -g bower
+  # npm install -g bower
 fi
 
 if ! grep -q -F 'load-nvmrc' ~/.zshrc; then
@@ -51,18 +51,6 @@ if [ ! -d ~/.rbenv ]; then
   export PATH=${RBENV_ROOT}/bin:$PATH
 
   eval "$(rbenv init)"
-
-  rbenv install 2.1.4
-  rbenv local 2.1.4
-  gem install bundle
-
-  rbenv install 2.2.4
-  rbenv local 2.2.4
-  gem install bundle
-
-  rbenv global 2.2.4
-
-  rbenv rehash
 fi
 
 exit 0

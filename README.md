@@ -2,6 +2,8 @@
 ---------
 ssh-add ~/.ssh/id_rsa
 
+vagrant plugin install vagrant-disksize
+
 vagrant up
 
 Доступы
