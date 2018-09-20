@@ -27,7 +27,8 @@ if ! dpkg -l htop > /dev/null 2>&1; then
   sysctl -w vm.max_map_count=262144
 
   docker run --name elastic6 --restart unless-stopped -d -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:6.4.0
-  docker run --name thumbor --restart unless-stopped -d -p 8888:80 minimalcompact/thumbor
+  # docker run --name thumbor --restart unless-stopped -d -p 8888:80 minimalcompact/thumbor
+  sudo docker run -e THUMBOR_QUALITY=90 --name zanui_thumbor --restart unless-stopped -d -p 8888:9000 zanui/thumbor
 fi
 
 exit 0

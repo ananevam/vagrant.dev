@@ -1,3 +1,4 @@
 /.vagrant
 /code/*
 !/code/.gitkeep
+/*.log
