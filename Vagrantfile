@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   # end
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   config.disksize.size = '50GB'
 
@@ -24,8 +24,13 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 9000, host: 9000 # Gulp server
   config.vm.network :forwarded_port, guest: 8888, host: 8888 # thumbor
   config.vm.network :forwarded_port, guest: 9200, host: 9200 # Elasticsearch
+  config.vm.network :forwarded_port, guest: 8083, host: 8083 # influxdb admin
+  config.vm.network :forwarded_port, guest: 8086, host: 8086 # influxdb
+  config.vm.network :forwarded_port, guest: 8123, host: 8123 # clickhouse
+  config.vm.network :forwarded_port, guest: 3035, host: 3035 # webpack dev server
   config.vm.network :forwarded_port, guest: 8050, host: 8050
-  config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.network :forwarded_port, guest: 8080, host: 8080 # https://github.com/tabixio/tabix
+  config.vm.network :forwarded_port, guest: 8001, host: 8001 # https://rdbtools.com/docs/install/docker/
 
 
   config.vm.network :private_network, ip: VAGRANT_IP

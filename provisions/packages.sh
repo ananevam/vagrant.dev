@@ -15,7 +15,7 @@ if ! dpkg -l htop > /dev/null 2>&1; then
   apt-get -y install libmagickwand-dev imagemagick
 
   # For ruby
-  apt-get -y install libssl-dev libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake bison libffi-dev
+  apt-get -y install libssl-dev libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake bison libffi-dev libreadline-dev
 
   # TagLib Audio Meta-Data Library
   apt-get -y install libtag1-dev
@@ -28,7 +28,8 @@ if ! dpkg -l htop > /dev/null 2>&1; then
 
   docker run --name elastic6 --restart unless-stopped -d -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:6.4.0
   # docker run --name thumbor --restart unless-stopped -d -p 8888:80 minimalcompact/thumbor
-  sudo docker run -e THUMBOR_QUALITY=90 --name zanui_thumbor --restart unless-stopped -d -p 8888:9000 zanui/thumbor
+  sudo docker run -e THUMBOR_QUALITY=95 --name zanui_thumbor --restart unless-stopped -d -p 8888:9000 zanui/thumbor
+  # sudo docker run -e QUALITY=95 --name apsl_thumbor_multi --restart unless-stopped -d -p 8888:8000 apsl/thumbor-multiprocess
 fi
 
 exit 0
